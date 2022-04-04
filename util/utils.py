@@ -190,6 +190,7 @@ def Video_test_collate_fn(data):
         cams = torch.cat(cam,dim=0)
         return imgs,labels,cams
 
+
 def Get_Video_test_DataLoader(db_txt,info,query,transform,batch_size=10,shuffle=False,num_workers=8,S=6,distractor=True):
     dataset = Video_test_Dataset(db_txt,info,query,transform,S,distractor=distractor)
     dataloader = DataLoader(dataset,batch_size=batch_size,collate_fn=Video_test_collate_fn,shuffle=shuffle,worker_init_fn=lambda _:np.random.seed(),num_workers=num_workers)
