@@ -9,7 +9,7 @@ IMG_EXTENSIONS = [
 ]
 
 def is_image_file(filename):
-    return any(filename.endswith(extension) for extension in IMG_EXTENSIONS)
+ return any(filename.endswith(extension) for extension in IMG_EXTENSIONS)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -21,15 +21,15 @@ if __name__ == '__main__':
     os.system('mkdir -p %s'%(args.output_dir))
     # Train
     train_imgs = []
-    data_dir = os.path.join(args.data_dir,'bbox_train')
+    data_dir = os.path.join(args.data_dir, 'bbox_train')
     ids = sorted(os.listdir(data_dir))
     for id in ids:
-        images = sorted(os.listdir(os.path.join(data_dir,id)))
+        images = sorted(os.listdir(os.path.join(data_dir, id)))
         for image in images:
             if is_image_file(image):
-                train_imgs.append(os.path.abspath(os.path.join(data_dir,id,image)))
+                train_imgs.append(os.path.abspath(os.path.join(data_dir, id, image)))
     train_imgs = np.array(train_imgs)
-    np.savetxt(os.path.join(args.output_dir,'train_path.txt'),train_imgs,fmt='%s',delimiter='\n')
+    np.savetxt(os.path.join(args.output_dir, 'train_path.txt'), train_imgs, fmt='%s', delimiter='\n')
     # Test
     test_imgs = []
     data_dir = os.path.join(args.data_dir,'bbox_test')
